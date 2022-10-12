@@ -24,6 +24,8 @@
     <_ContentIncludedByDefault Remove="Pages\Products.razor" />
   </ItemGroup>
 
-
+	<ItemGroup>
+		<UpToDateCheckInput Remove="Pages\DisplayProducts.razor" />
+	</ItemGroup>
 
 </Project>
