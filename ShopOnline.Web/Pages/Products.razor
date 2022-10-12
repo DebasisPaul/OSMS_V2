@@ -1,0 +1,44 @@
+﻿@page "/"
+@using ShopOnline.Models.Dtos
+@using ShopOnline.Web.Pages
+@inherits ProductsBase
+
+@if(Products == null)
+{
+    <h3>Loading products...</h3>
+}
+else
+{
+    <h3 class="mb-5">Products</h3>
+
+    var productCount = Products.Count();
+    @if(productCount > 0)
+    {
+        @*const int itemsPerRow = 4;
+        var productRowList = new List<ProductDto>();
+
+        @for (int i = 0; i < productCount; i++)
+        {
+            productRowList = Products.Skip(i * itemsPerRow).Take(itemsPerRow).ToList();*@
+
+@*        var groupedProductsByCategory = from product in Products
+                                        group product by product.CategoryId into prodByCatGroup
+                                        orderby prodByCatGroup.Key
+                                        select prodByCatGroup;*@
+
+            @foreach(var prodGroup in GetGropedProductsByCategory())
+            {
+                @*<h4>@prodGroup.FirstOrDefault(pg=>pg.CategoryId == prodGroup.Key).CategoryName</h4>*@
+
+            <h4>@GetCategoryName(prodGroup)</h4>
+
+                <div class="row mt-3">
+                    <DisplayProducts Products="@prodGroup.Take(4)"></DisplayProducts>
+                </div>
+                <hr class="mb-3" />
+            }
+            
+            
+       @* }*@
+    }
+}
